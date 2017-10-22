@@ -16,7 +16,7 @@ import java.util.List;
 
 /**
  * Created by Administrator on 2017/10/21 0021.
- * 
+ *
  */
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
@@ -51,7 +51,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
         holder.newsTitle.setText(newsBean.getTitle());
         Picasso
                 .with(context)
-                .load(newsBean.getImageUrl())
+                .load(newsBean.getImageUrl().get(0))
                 .into(holder.newsImage);
     }
 

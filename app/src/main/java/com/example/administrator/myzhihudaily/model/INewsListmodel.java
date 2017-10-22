@@ -17,8 +17,7 @@ import rx.Observable;
  */
 
 public interface INewsListmodel {
-     void LoadNewsList(Observable<RootNews> rootNewsObservable,
-                             RecyclerView recyclerView);
-     IGetRequest getRequest(String baseUrl);
+     void LoadNewsList();
+     IGetRequest getRequest();
      ArrayList<NewsBean> getNewsList();
 }

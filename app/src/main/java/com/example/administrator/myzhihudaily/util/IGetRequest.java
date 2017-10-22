@@ -8,7 +8,7 @@ import retrofit2.http.GET;
 
 /**
  * Created by Administrator on 2017/10/21 0021.
- *
+ *网络请求接口
  */
 
 public interface IGetRequest {
