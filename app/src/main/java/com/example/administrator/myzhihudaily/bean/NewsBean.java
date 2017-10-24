@@ -1,5 +1,7 @@
 package com.example.administrator.myzhihudaily.bean;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 /**
@@ -36,8 +38,11 @@ public class NewsBean {
 ////    public void setNewsUrl(String newsUrl) {
 ////        this.newsUrl = newsUrl;
 ////    }
+    @SerializedName("id")
     private int id;
+    @SerializedName("title")
     private String title;
+    @SerializedName("images")
     private List<String> imagesUrl;
 
     public void setId(int id) {

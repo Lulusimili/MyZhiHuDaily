@@ -4,6 +4,8 @@ import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 
 import com.example.administrator.myzhihudaily.bean.RootNews;
+import com.example.administrator.myzhihudaily.presenter.INewsListPresenter;
+import com.example.administrator.myzhihudaily.presenter.NewsListPresenter;
 import com.example.administrator.myzhihudaily.util.IGetRequest;
 
 /**
@@ -13,4 +15,6 @@ import com.example.administrator.myzhihudaily.util.IGetRequest;
 
 public interface INewsList {
          String getBaseUrl();
+         RecyclerView getRecyclerView();
+         NewsListPresenter getMPresenter();
 }

@@ -1,5 +1,6 @@
 package com.example.administrator.myzhihudaily.presenter;
 
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
@@ -12,6 +13,7 @@ import com.example.administrator.myzhihudaily.util.IGetRequest;
 import com.example.administrator.myzhihudaily.view.INewsList;
 import com.example.administrator.myzhihudaily.view.MainActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,14 +21,25 @@ import java.util.List;
  *
  */
 
-public class NewsListPresenter {
+public class NewsListPresenter implements INewsListPresenter {
     private INewsList mINewsList;
     private INewsListmodel mINewsListmodel;
+    private NewsListPresenter newsListPresenter;
     public NewsListPresenter(INewsList view){
         mINewsList=view;
         mINewsListmodel=new NewsListModel(mINewsList.getBaseUrl());
     }
-    public List<NewsBean> getNewsBeanList(){
-        return mINewsListmodel.getNewsList();
+    public NewsListPresenter(){
+
     }
+    @Override
+    public void disPlay() {
+        mINewsListmodel.loadNewsList(mINewsList.getRecyclerView());
+    }
+
+    @Override
+    public NewsListPresenter getNesPresenter() {
+        return mINewsList.getMPresenter();
+    }
+
 }

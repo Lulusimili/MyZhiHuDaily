@@ -1,15 +1,22 @@
 package com.example.administrator.myzhihudaily.model;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;;
+import com.example.administrator.myzhihudaily.adapter.NewsAdapter;
 import com.example.administrator.myzhihudaily.bean.NewsBean;
 import com.example.administrator.myzhihudaily.bean.RootNews;
+import com.example.administrator.myzhihudaily.presenter.INewsListPresenter;
+import com.example.administrator.myzhihudaily.presenter.NewsListPresenter;
 import com.example.administrator.myzhihudaily.util.IGetRequest;
 import com.example.administrator.myzhihudaily.util.NetworkRequestUtil;
+import com.example.administrator.myzhihudaily.view.INewsList;
+
 import java.util.ArrayList;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
+
+import static com.example.administrator.myzhihudaily.MyApplication.getContext;
 
 
 /**
@@ -21,9 +28,11 @@ public class NewsListModel implements INewsListmodel {
 
     private String baseUrl;
     private ArrayList<NewsBean> mNewsBeanList=new ArrayList<>();
-    private rx.Observable<RootNews> rootNewsObservable;
+    public rx.Observable<RootNews> rootNewsObservable;
+    private INewsListPresenter mPresenter=new NewsListPresenter();
     public NewsListModel(String baseUrl){
         this.baseUrl=baseUrl;
+        rootNewsObservable=NetworkRequestUtil.getRequest(baseUrl).getLatestNews();
     }
     @Override
     public IGetRequest getRequest() {
@@ -36,7 +45,7 @@ public class NewsListModel implements INewsListmodel {
     }
 
     @Override
-    public void LoadNewsList() {
+    public void loadNewsList(final RecyclerView recyclerView) {
         rootNewsObservable.observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .map(new Func1<RootNews,ArrayList<NewsBean>>(){
@@ -58,11 +67,8 @@ public class NewsListModel implements INewsListmodel {
 
                     @Override
                     public void onNext(ArrayList<NewsBean> newsBeenList) {
-                        mNewsBeanList=newsBeenList;
-                        for (NewsBean newsBean:newsBeenList){
-                            Log.d("8888888",newsBean.getTitle());
-                        }
-//                      recyclerView.setAdapter(new NewsAdapter(newsBeenList, getContext()));
+                        recyclerView.setAdapter(new NewsAdapter(newsBeenList,getContext()));
+                        Log.d("hhhhhhh",newsBeenList.toString());
                     }
 
                 });

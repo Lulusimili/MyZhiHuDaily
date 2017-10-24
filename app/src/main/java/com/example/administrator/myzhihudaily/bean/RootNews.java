@@ -1,5 +1,7 @@
 package com.example.administrator.myzhihudaily.bean;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 
 /**
@@ -8,6 +10,7 @@ import java.util.ArrayList;
  */
 
 public class RootNews {
+    @SerializedName("stories")
     private ArrayList<NewsBean> newsBeenList ;
     public void setStories(ArrayList<NewsBean> newsBeenList){
         this.newsBeenList = newsBeenList;
