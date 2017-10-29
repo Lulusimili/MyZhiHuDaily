@@ -2,6 +2,7 @@ package com.example.administrator.myzhihudaily.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +15,6 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-/**
- * Created by Administrator on 2017/10/21 0021.
- *
- */
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
     private List<NewsBean> mNewBeanList;
@@ -47,12 +44,18 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        NewsBean newsBean=mNewBeanList.get(position);
-        holder.newsTitle.setText(newsBean.getTitle());
-        Picasso
-                .with(context)
-                .load(newsBean.getImageUrl().get(0))
-                .into(holder.newsImage);
+        holder.newsTitle.setText(mNewBeanList.get(position).getTitle());
+        try {
+            if(mNewBeanList.get(position).getImageUrl().size()>0) {
+                Picasso
+                        .with(context)
+                        .load(mNewBeanList.get(position).getImageUrl().get(0))
+                        .into(holder.newsImage);
+            }
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
+
     }
 
     @Override

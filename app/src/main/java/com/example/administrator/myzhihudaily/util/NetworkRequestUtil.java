@@ -3,11 +3,6 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-/**
- * Created by Administrator on 2017/10/20 0020.
- *
- */
-
 public class NetworkRequestUtil {
 
     public static IGetRequest getRequest(String baseUrl) {
@@ -21,4 +16,5 @@ public class NetworkRequestUtil {
        IGetRequest request = retrofit.create(IGetRequest.class);
         return request;
     }
+
 }

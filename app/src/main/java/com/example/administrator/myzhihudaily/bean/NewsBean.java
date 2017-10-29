@@ -15,7 +15,7 @@ public class NewsBean {
     @SerializedName("title")
     private String title;
     @SerializedName("images")
-    private List<String> imagesUrl;
+    private List<String> images;
 
     public void setId(int id) {
         this.id = id;
@@ -26,7 +26,7 @@ public class NewsBean {
     }
 
     public void setImageUrl(List<String> imagesUrl) {
-        this.imagesUrl = imagesUrl;
+        this.images= imagesUrl;
     }
 
     public int getId() {
@@ -38,6 +38,6 @@ public class NewsBean {
     }
 
     public List<String> getImageUrl() {
-        return imagesUrl;
+        return images;
     }
 }
