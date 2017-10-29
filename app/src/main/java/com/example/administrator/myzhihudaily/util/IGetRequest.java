@@ -14,4 +14,13 @@ import retrofit2.http.GET;
 public interface IGetRequest {
     @GET("/api/4/news/latest")
     rx.Observable<RootNews> getLatestNews();
+
+    @GET("/api/4/theme/10")
+    rx.Observable<RootNews> getInternet();
+
+    @GET("/api/4/theme/11")
+    rx.Observable<RootNews> getInterest();
+
+    @GET("/api/4/theme/8")
+    rx.Observable<RootNews> getSport();
 }

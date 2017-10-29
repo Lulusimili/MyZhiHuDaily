@@ -14,7 +14,7 @@ import com.example.administrator.myzhihudaily.util.IGetRequest;
  */
 
 public interface INewsList {
-         String getBaseUrl();
+         IGetRequest getObserver();
          RecyclerView getRecyclerView();
-         NewsListPresenter getMPresenter();
+
 }

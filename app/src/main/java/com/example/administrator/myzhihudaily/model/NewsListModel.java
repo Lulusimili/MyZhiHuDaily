@@ -26,22 +26,10 @@ import static com.example.administrator.myzhihudaily.MyApplication.getContext;
 
 public class NewsListModel implements INewsListmodel {
 
-    private String baseUrl;
-    private ArrayList<NewsBean> mNewsBeanList=new ArrayList<>();
-    public rx.Observable<RootNews> rootNewsObservable;
-    private INewsListPresenter mPresenter=new NewsListPresenter();
-    public NewsListModel(String baseUrl){
-        this.baseUrl=baseUrl;
-        rootNewsObservable=NetworkRequestUtil.getRequest(baseUrl).getLatestNews();
-    }
-    @Override
-    public IGetRequest getRequest() {
-        return NetworkRequestUtil.getRequest(baseUrl);
-    }
 
-    @Override
-    public ArrayList<NewsBean> getNewsList() {
-        return mNewsBeanList;
+    public rx.Observable<RootNews> rootNewsObservable;
+    public NewsListModel(rx.Observable<RootNews> rootNewsObservable){
+        this.rootNewsObservable=rootNewsObservable;
     }
 
     @Override
@@ -68,7 +56,7 @@ public class NewsListModel implements INewsListmodel {
                     @Override
                     public void onNext(ArrayList<NewsBean> newsBeenList) {
                         recyclerView.setAdapter(new NewsAdapter(newsBeenList,getContext()));
-                        Log.d("hhhhhhh",newsBeenList.toString());
+                        Log.d("hhhhhhh",newsBeenList.get(0).getTitle());
                     }
 
                 });
